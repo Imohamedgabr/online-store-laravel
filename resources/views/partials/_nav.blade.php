@@ -24,7 +24,6 @@
                         <a href="#">Contact</a>
                     </li>
 
-                    
                     <li>
                     <a href=" {{-- {{ route('product.shoppingCart') }} --}} ">
                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
