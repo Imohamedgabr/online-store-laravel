@@ -64,9 +64,11 @@
                     </div>
 
                 </div>
-
+                
+                
                 <div class="row">
-                    @foreach($products as $product)
+                @foreach($products as $product)
+                    
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
                             <img src="{{$product->imagePath}} " alt="">
@@ -87,6 +89,7 @@
                                 </p>
                             </div>
                         </div>
+                       
                     </div>
                     @endforeach
                     

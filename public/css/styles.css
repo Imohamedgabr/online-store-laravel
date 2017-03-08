@@ -25,7 +25,7 @@ body {
 }
 
 .thumbnail img {
-    width: 100%;
+    max-height: 180px;
 }
 
 .ratings {
@@ -55,6 +55,8 @@ footer {
 .search{
     margin-top: 15px;
 }
+
+/*styles for searching button*/
 
     .quick-search-form .form-control {
     height: 35px;
