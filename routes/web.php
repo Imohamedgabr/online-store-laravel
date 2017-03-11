@@ -15,3 +15,23 @@ Route::get('/', [
 	'uses'=>'ProductController@getIndex',
 	'as'=>'product.index'
 ]);
+
+Route::get('/showProduct/{id}', [
+	'uses'=>'ProductController@showProduct',
+	'as'=>'product.show'
+]);
+
+
+Auth::routes();
+
+Route::get('/home', [
+	'uses'=>'HomeController@index',
+	'as'=>'profile',
+	'middleware'=>'auth'
+]);
+
+Route::get('/logout', [
+	'uses'=>'HomeController@logout',
+	'as'=>'logout',
+	'middleware'=>'auth'
+]);

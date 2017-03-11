@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- the css files we created in the css folder in public -->
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="{{ URL::asset('css/styles.css') }}" />
 
     @yield('stylesheets')
  

@@ -10,29 +10,8 @@
     <!-- Page Content -->
     <div class="container">
 
-        <div class="row">
-
-            <div class="col-md-3">
-                <p class="lead">Shop Name</p>
-                <div class="list-group">
-                    <a href="#" class="list-group-item">Category 1</a>
-                    <a href="#" class="list-group-item">Category 2</a>
-                    <a href="#" class="list-group-item">Category 3</a>
-                    
-                    {{-- serch form --}}
-                    <form action="" class="search" role="search">
-                        <div class="input-group">
-                            <input type="text" name="term" id="term" class="form-control" placeholder="Search for item">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="submit">
-                                    <i class="glyphicon glyphicon-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
+     @include('partials._sideBar') 
+     
             <div class="col-md-9">
                 <div class="row carousel-holder">
 
@@ -74,12 +53,12 @@
                             <img src="{{$product->imagePath}} " alt="">
                             <div class="caption">
                                 <h4 class="pull-right">${{$product->price}}</h4>
-                                <h4><a href="#">{{$product->title}}</a>
+                                <h4><a href="{{ route('product.show', ['id' => $product->id]) }} ">{{$product->title}}</a>
                                 </h4>
                                 <p>{{$product->description}} </p>
                             </div>
                             <div class="ratings">
-                                <p class="pull-right">15 reviews</p>
+                                <p class="pull-right">{{$product->reviews}} reviews</p>
                                 <p>
                                     <span class="glyphicon glyphicon-star"></span>
                                     <span class="glyphicon glyphicon-star"></span>
