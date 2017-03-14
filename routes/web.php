@@ -48,10 +48,23 @@ Route::get('/shopping-cart', [
 
 Route::get('/checkout', [
 	'uses'=>'ProductController@getCheckout',
-	'as'=>'checkout'
+	'as'=>'checkout',
+	'middleware'=>'auth'
 ]);
 
 Route::post('/checkout', [
 	'uses'=>'ProductController@postCheckout',
-	'as'=>'checkout'
+	'as'=>'checkout',
+	'middleware'=>'auth'
 ]);
+
+
+Route::get('/reduce/{id}', [
+	'uses'=>'productController@getReduceByOne',
+	'as'=>'product.reduceByOne'
+	]);
+
+Route::get('/remove/{id}', [
+	'uses'=>'productController@getRemoveItem',
+	'as'=>'product.remove'
+	]);

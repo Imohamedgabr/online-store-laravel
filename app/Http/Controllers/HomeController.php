@@ -24,7 +24,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('user_profile');
+        $orders = Auth::user()->orders;
+        // transform allows us to edit each order 
+        $orders->transform(function($order, $key){
+            $order->cart = unserialize($order->cart);
+            return $order;
+        });
+        return view('user_profile',['orders' => $orders]);
     }
 
     

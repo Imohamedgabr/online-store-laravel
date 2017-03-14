@@ -1,15 +1,38 @@
-@extends('layouts.app')
+@extends('main')
+<!-- main is the name of the page under views -->
+
+@section('title',' | User Profile')
 
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+            
+            <h1>Welcome Back {{ Auth::user()->name }}</h1>
+            <hr>
+            <h2>My Orders</h2>
+            <div class="panel-body">
+                
+                @foreach($orders as $order)
+                    <div class="panel panel-default">
+                        <ul class="list-group">
+                            @foreach($order->cart->items as $item)
+                              <li class="list-group-item">
+                              <span class="badge">{{$item['price']}} $ </span>
+                              {{$item['item']['title'] }} <span class="badge">Amount: {{$item['qty'] }} Unit/Units</span>
 
-                <div class="panel-body">
-                    You are logged in!
-                </div>
+                              </li>
+
+                             @endforeach
+                         </ul>
+
+                    </div>
+
+                    <div class="well panel-footer">
+                        <strong>Total Price:  $ {{$order->cart->totalPrice}} </strong>
+                    </div>
+                <hr>
+                @endforeach
             </div>
         </div>
     </div>
