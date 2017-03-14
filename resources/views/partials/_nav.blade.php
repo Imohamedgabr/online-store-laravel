@@ -26,9 +26,9 @@
         </ul>   
       <ul class="nav navbar-nav navbar-right">
         <li>
-            <a href=" {{-- {{ route('product.shoppingCart') }} --}} ">
+            <a href="{{ route('product.shoppingCart') }}">
             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-            Shopping Cart <span class="badge"> {{-- {{Session::has('cart') ? Session::get('cart')->totalQty : '' }} --}} </span> </a>
+            Shopping Cart <span class="badge"> {{Session::has('cart') ? Session::get('cart')->totalQty : '' }} </span> </a>
         </li>
         <li>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Account Management <span class="caret"></span></a>

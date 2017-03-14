@@ -32,9 +32,11 @@
                         @endif
                         
                         <p>{{$product->description}}</p>
+                        <a href="{{ route('product.addToCart',['id'=>$product->id]) }}" class="btn btn-success" role="button"> Add to Cart</a>
                     </div>
                     <div class="ratings">
                         <p class="pull-right">{{$product->reviews}} reviews</p>
+                        <br>
                         <p>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
