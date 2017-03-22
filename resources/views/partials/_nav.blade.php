@@ -34,18 +34,18 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Account Management <span class="caret"></span></a>
             <ul class="dropdown-menu">
                        
-            {{-- @if (Auth::guard("admin_user")->user()) --}}
-                <li><a href="{{-- {{url('/admin_home')}} --}}">Profile</a></li>
-                <li><a href="{{-- {{url('/admin_logout')}} --}}">Logout</a></li>
-            {{-- @elseif(! Auth::guest()) --}}
+            @if (Auth::guard("admin_user")->user())
+                <li><a href="{{url('/admin_home')}}">Profile</a></li>
+                <li><a href="{{url('/admin_logout')}}">Logout</a></li>
+            @elseif(! Auth::guest())
                 <li><a href="{{ route('profile') }} ">Profile</a></li>
                 <li><a href="{{ route('logout') }} ">Logout</a></li>
                 {{-- <li role="separator" class="divider"></li> --}}
-            {{-- @else --}}
+            @else
                 
                 <li><a href="{{ url('/login') }}">Login</a></li>
                 <li><a href="{{ url('/register') }}">Register</a></li>
-            {{-- @endif --}}
+            @endif
              </ul>
             </li>
       </ul>

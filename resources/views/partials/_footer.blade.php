@@ -29,7 +29,9 @@
                             </a>
                         </li>
                     </ul>
-                    <p class="copyright text-muted">Copyright &copy; Mohamed Gabr</p>
+                    <p class="copyright text-muted">Copyright &copy; Mohamed Gabr
+                    @if(Auth::guest()) <a href="{{ url('/admin_login') }}">Admin</a> @else .. @endif
+                    </p>
                 </div>
             </div>
         </div>
