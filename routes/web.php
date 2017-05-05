@@ -92,3 +92,14 @@ Route::get('admin_password/reset/{token}','AdminAuth\ResetPasswordController@sho
 Route::get('admin_register','AdminAuth\RegisterController@showRegistrationForm');
 
 Route::post('admin_register','AdminAuth\RegisterController@register');
+
+//-----------------------------------------------------------------------------
+
+// Products CRUD
+
+Route::get('/products/index', [
+	'uses'=>'ManageProductsController@index',
+	'as'=>'products.index',
+	'middleware'=>'admin.user'
+	]);
+

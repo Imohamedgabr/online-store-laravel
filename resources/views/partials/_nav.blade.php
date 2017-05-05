@@ -13,18 +13,45 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="row">
+    <div class="col-md-5">
         <ul class="nav navbar-nav">
             <li>
-                <a href="#">About</a>
+                <div class="dropdown">
+                  <a class="dropbtn">Services</a>
+                  <div class="dropdown-content">
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                  </div>
+                </div>
             </li>
             <li>
-                <a href="#">Services</a>
+                <div class="dropdown">
+                  <a class="dropbtn">Categories</a>
+                  <div class="dropdown-content">
+                    <a href="#">Link 4</a>
+                    <a href="#">Link 5</a>
+                    <a href="#">Link 6</a>
+                  </div>
+                </div>
             </li>
             <li>
-                <a href="#">Contact</a>
+                <form action="" class="search" role="search">
+                        <div class="input-group">
+                            <input type="text" name="term" id="term" class="form-control" placeholder="Search for item">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                </form>
             </li>
-        </ul>   
-      <ul class="nav navbar-nav navbar-right">
+        </ul>
+        </div>   
+        <div class="col-md-5">
+        <ul class="nav navbar-nav navbar-right">
         <li>
             <a href="{{ route('product.shoppingCart') }}">
             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
@@ -48,7 +75,9 @@
             @endif
              </ul>
             </li>
-      </ul>
+        </ul>
+        </div>
+    </div>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
