@@ -103,3 +103,14 @@ Route::get('/products/index', [
 	'middleware'=>'admin.user'
 	]);
 
+Route::get('/products/edit/{id}', [
+	'uses'=>'ManageProductsController@edit',
+	'as'=>'product.edit',
+	'middleware'=>'admin.user'
+	]);
+
+Route::put('/products/update/{id}', [
+	'uses'=>'ManageProductsController@update',
+	'as'=>'product.update',
+	'middleware'=>'admin.user'
+	]);

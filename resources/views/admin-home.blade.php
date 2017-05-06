@@ -1,28 +1,39 @@
-@extends('main')
+@extends('admin_main')
 <!-- main is the name of the page under views -->
 
-@section('title',' | User Profile')
+@section('title',' | Admin Profile')
+
+@section('stylesheets')
+    
+    {!! Html::style('css/adminHome.css') !!}
+    
+
+@endsection
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+  
             
-            <h1>Admin Dashboard </h1>
-            <hr>
-            
-            <div class="panel-body">
-                <h2>Welcome {{ Auth::guard('admin_user')->user()->name }}</h2>
-                <h3>This is our Admin profile page
-                you have the authority to create and add products and delete them
-                please becareful while you are doing this because this might delete products which is important
-                thank you!</h3>
-                <h3>This is designed as a trial version of an online store.
-                </h3>
-                <h3>This can be modified as you wish</h3>
-                
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Admin Dashboard</h1>
+                        <br>
+                        <b>Welcome To Admin Dashboard</b>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
             </div>
+            <!-- /.container-fluid -->
         </div>
-    </div>
-</div>
+
+
+@endsection
+
+@section('scripts')
+
+        {!! Html::script('js/adminHome.js') !!}
+
 @endsection

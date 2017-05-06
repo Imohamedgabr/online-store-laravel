@@ -30,9 +30,12 @@
                         </li>
                     </ul>
                     <p class="copyright text-muted">Copyright &copy; Mohamed Gabr
-                    @if(Auth::guest()) <a href="{{ url('/admin_login') }}">Admin</a> @else .. @endif
+                    {{-- it only works in this order --}}
+                    @if(Auth::guard("admin_user")->user()) <a href="{{ url('/admin_home') }}">Admin</a> 
+                    @elseif(Auth::guest()) <a href="{{ url('/admin_login') }}">Admin</a> @else .. @endif
                     </p>
                 </div>
             </div>
         </div>
     </footer>
+

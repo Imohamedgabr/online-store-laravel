@@ -15,6 +15,8 @@
     <!-- Latest compiled and minified font awesome -->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+
     <!--Jquery from CDN -->
     <script
     src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -22,7 +24,7 @@
     crossorigin="anonymous"></script>
 
     <!-- the css files we created in the css folder in public -->
-    <link rel="stylesheet" href="{{ URL::asset('css/styles.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('css/adminHome.css') }}" />
 
     @yield('stylesheets')
  
