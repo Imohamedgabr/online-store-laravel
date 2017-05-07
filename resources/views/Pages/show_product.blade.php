@@ -19,7 +19,7 @@
 	 <div class="col-md-9">
 
                 <div class="thumbnail">
-                    <img class="img-responsive" src="{{$product->imagePath}}" alt="">
+                    <img class="img-responsive" src="{{ asset('uploads/images/'. $product->imagePath ) }}" alt="">
                     <div class="caption-full">
                         <h4 class="pull-right">${{$product->price}}</h4>
 
@@ -33,6 +33,21 @@
                         
                         <p>{{$product->description}}</p>
                         <a href="{{ route('product.addToCart',['id'=>$product->id]) }}" class="btn btn-success" role="button"> Add to Cart</a>
+                        
+                        @if(Auth::guard("admin_user")->user())
+                        <a href="{{ route('product.edit',['id'=>$product->id]) }}" class="btn btn-info" role="button"> Edit Product</a>
+                        
+
+                        {!! Form::open(['route' => ['product.delete', $product->id],'class'=>'delete', 'method' => 'DELETE']) !!}
+
+                        <br>
+                        {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+
+                        {!! Form::close() !!}
+                         @endif
+
+
+
                     </div>
                     <div class="ratings">
                         <p class="pull-right">{{$product->reviews}} reviews</p>

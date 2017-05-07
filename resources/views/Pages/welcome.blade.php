@@ -62,7 +62,7 @@
                     
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <img src="{{$product->imagePath}} " alt="">
+                            <img src="{{ asset('uploads/images/'. $product->imagePath ) }} " alt="">
                             <div class="caption">
                                 <h4 class="pull-right">${{$product->price}}</h4>
                                 <h4><a href="{{ route('product.show', ['id' => $product->id]) }} ">{{$product->title}}</a>
@@ -90,6 +90,14 @@
                         </h4>
                         <p>Please Contact Us</p>
                         <a class="btn btn-primary" target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">Contact</a>
+            
+                        @if(Auth::guard("admin_user")->user())
+                        <a rel="nofollow" class="btn btn-success" href="{{ route('product.create') }}">
+                        <span class="glyphicon glyphicon-plus"></span>
+                            Add product
+                          </a>
+                        @endif
+                        
                     </div>
 
                 </div>

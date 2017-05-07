@@ -17,7 +17,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                    @if(Session::has('success'))
+                    {{-- @if(Session::has('success'))
         <div class="row">
             <div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3">
                 <div id="charge-message" class="alert alert-success">
@@ -25,10 +25,10 @@
                 </div>
             </div>
         </div>
-        @endif
+        @endif --}}
         
     <div class="actions">
-      <a rel="nofollow" class="btn btn-default" href="#!/add-product">
+      <a rel="nofollow" class="btn btn-default" href="{{ route('product.create') }}">
         <span class="glyphicon glyphicon-plus"></span>
         Add product
       </a>
@@ -58,7 +58,14 @@
                   </td>
                   <td>
                     <a rel="nofollow" class="btn btn-warning btn-xs" href="{{ route('product.edit',['id' =>$product->id ]) }}">Edit</a>
-                    <a rel="nofollow" class="btn btn-danger btn-xs" href="#!/product/1/delete">Delete</a>
+                    
+                    {!! Form::open(['route' => ['product.delete', $product->id],'class'=>'delete', 'method' => 'DELETE']) !!}
+
+                    {{-- <a rel="nofollow" class="btn btn-danger btn-xs" >Delete</a> --}}
+                    {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']) !!}
+
+                    {!! Form::close() !!}
+
                   </td>
                 </tr>
                 @endforeach
@@ -82,12 +89,17 @@
     
 </div>
 
+@endsection
 
 @section('scripts')
 
         {!! Html::script('js/adminHome.js') !!}
+        <script>
+    $(".delete").on("submit", function(){
+        return confirm("Do you want to delete this item?");
+    });
+</script>
 
 @endsection
 
 
-@endsection

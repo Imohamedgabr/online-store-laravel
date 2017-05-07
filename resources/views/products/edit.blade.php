@@ -16,7 +16,8 @@
 		{{-- we will make a model object and bind the model object to the form and laravel will auto fill it in the form  --}}
 <div class="container">
 	<div class="row">
-		
+			<h1>Edit Product</h1>
+			<hr>
 			<div class="col-md-8">
 			{!! Form::model($product,['route' => ['product.update', $product->id],'data-parsley-validate'=>'', 'method' =>'PUT','files'=> true]) !!}
 			
@@ -30,7 +31,7 @@
 	              'data-parsley-required-message' => 'Title is required',
 	              'data-parsley-trigger'          => 'change focusout',
 	              'data-parsley-minlength'        => '2',
-	              'data-parsley-maxlength'        => '32'
+	              'data-parsley-maxlength'        => '250'
 	              ]) !!}
 
 
@@ -42,17 +43,22 @@
 	              'placeholder'                   => 'Title',
 	              'data-parsley-required-message' => 'Title is required',
 	              'data-parsley-trigger'          => 'change focusout',
-	              'data-parsley-minlength'        => '2',
-	              'data-parsley-maxlength'        => '32'
+	              'data-parsley-maxlength'        => '250'
+	              ]) !!}
+
+				{{ Form::label('Quantity', 'Quantity:') }}
+				{!! Form::text('quantity', null, [
+	              'class'                         => 'form-control',
+	              'placeholder'                   => 'Quantity',
+	              'data-parsley-trigger'          => 'change focusout',
+	              'data-parsley-maxlength'        => '250'
 	              ]) !!}
 
 				
-
-				
 				{{-- the image --}}
-				{{Form::label('featured_image', 'Update Featured Image: (Required)' , ['class' => 'top-margin-space']) }}
+				{{Form::label('photo', 'Update Image: (Required)' , ['class' => 'top-margin-space']) }}
 				{{-- {{ Form::file('featured_image') }} --}}
-				{!! Form::file('featured_image', [
+				{!! Form::file('photo', [
 	              'class'                         => 'form-control',
 	              'required'                      => 'required',
 	              'data-parsley-required-message' => 'Image is required'

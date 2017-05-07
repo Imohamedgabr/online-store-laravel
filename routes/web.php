@@ -103,6 +103,19 @@ Route::get('/products/index', [
 	'middleware'=>'admin.user'
 	]);
 
+Route::get('/products/create', [
+	'uses'=>'ManageProductsController@create',
+	'as'=>'product.create',
+	'middleware'=>'admin.user'
+	]);
+
+Route::post('/products/store', [
+	'uses'=>'ManageProductsController@store',
+	'as'=>'product.store',
+	'middleware'=>'admin.user'
+	]);
+
+
 Route::get('/products/edit/{id}', [
 	'uses'=>'ManageProductsController@edit',
 	'as'=>'product.edit',
@@ -112,5 +125,11 @@ Route::get('/products/edit/{id}', [
 Route::put('/products/update/{id}', [
 	'uses'=>'ManageProductsController@update',
 	'as'=>'product.update',
+	'middleware'=>'admin.user'
+	]);
+
+Route::delete('/products/delete/{id}', [
+	'uses'=>'ManageProductsController@destroy',
+	'as'=>'product.delete',
 	'middleware'=>'admin.user'
 	]);
