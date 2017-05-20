@@ -39,7 +39,7 @@
             <li>
                 <form action="" class="search" role="search">
                         <div class="input-group">
-                            <input type="text" name="term" id="term" class="form-control" placeholder="Search for item">
+                            <input type="text" name="term" id="term" class="form-control" placeholder="Search for item .. ">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="submit">
                                     <i class="glyphicon glyphicon-search"></i>

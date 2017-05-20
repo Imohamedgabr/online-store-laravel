@@ -13,10 +13,10 @@
 @section('content')
 
 <!-- Page Content -->
-        <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
                     {{-- @if(Session::has('success'))
         <div class="row">
             <div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3">
@@ -49,7 +49,7 @@
                 @foreach($products as $product)
                 <tr>
                   <td>
-                    <a rel="nofollow" href="#!/product/1">{{$product->title}}</a>
+                    <a rel="nofollow" href="{{ route('product.show', ['id' => $product->id]) }}">{{$product->title}}</a>
                   </td>
                   <td> {{substr(strip_tags($product->description), 0 ,150)}} {{strlen(strip_tags($product->description)) > 150?"..." :"" }} </td>
                   <td>
@@ -73,18 +73,18 @@
               </table>
               <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                  {{ $products->links() }}
+                      {{ $products->links() }}
                 </div>
               </div>
-        </div>
-
-                    </div>
-                    <!-- /.col-lg-12 -->
-                </div>
-                <!-- /.row -->
             </div>
-            <!-- /.container-fluid -->
+
+          </div>
+            <!-- /.col-lg-12 -->
         </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
 
     
 </div>

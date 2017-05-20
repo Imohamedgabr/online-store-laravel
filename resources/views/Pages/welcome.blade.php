@@ -62,7 +62,9 @@
                     
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
+                            <a href="{{ route('product.show', ['id' => $product->id]) }} ">
                             <img src="{{ asset('uploads/images/'. $product->imagePath ) }} " alt="">
+                            </a>
                             <div class="caption">
                                 <h4 class="pull-right">${{$product->price}}</h4>
                                 <h4><a href="{{ route('product.show', ['id' => $product->id]) }} ">{{$product->title}}</a>
@@ -99,9 +101,13 @@
                         @endif
                         
                     </div>
-
+                   
                 </div>
-
+                <div class="row">
+                    <div class="col col-md-4 col-md-offset-4">
+                        {!! $products->links() !!}
+                    </div>
+                </div>
             </div>
 
         </div>

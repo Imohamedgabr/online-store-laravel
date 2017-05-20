@@ -19,6 +19,7 @@
 
 			{{-- we tell the form to allow file uploads --}}
 			{!! Form::open(array('route'=>'product.store', 'data-parsley-validate' => '','files' =>true)) !!}
+
 				{{ Form::label('title', 'Title:') }}
 				{!! Form::text('title', null, [
 	              'class'                         => 'form-control',
@@ -29,6 +30,13 @@
 	              'data-parsley-minlength'        => '5',
 	              'data-parsley-maxlength'        => '250'
 	              ]) !!}
+
+	             {{ Form::label('category_id', 'Category:') }}
+	             <select class="form-control" name="category_id">
+	             	@foreach($categories as $category)
+						<option value="{{$category->id }} ">{{$category->name }} </option>
+	             	@endforeach
+	             </select>
 
 				{{ Form::label('price', 'Price:') }}
 				{!! Form::text('price', null, [

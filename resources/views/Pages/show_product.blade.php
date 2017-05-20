@@ -41,11 +41,12 @@
                         {!! Form::open(['route' => ['product.delete', $product->id],'class'=>'delete', 'method' => 'DELETE']) !!}
 
                         <br>
-                        {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                        <button class="btn btn-danger delete" onclick="return confirm('Are you sure?')">Delete</button>
 
                         {!! Form::close() !!}
                          @endif
-
+                         <br>
+                        <p><strong>Category: </strong>{{$product->category->name }} </p>
 
 
                     </div>

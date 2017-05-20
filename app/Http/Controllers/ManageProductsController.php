@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Product;
+use App\Category;
 use Storage;
 use Session;
 
@@ -16,6 +17,7 @@ class ManageProductsController extends Controller
             // 'email'=>['required','email'],
             'price'          => 'required|integer',
             'description'          => 'required',
+            'category_id'       => 'required|integer',
             'photo'=>['mimes:jpeg,png,gif,bmp']
         ];
 
@@ -28,7 +30,8 @@ class ManageProductsController extends Controller
 
     public function create()
     {
-        return view('products.create');
+        $categories = Category::all();
+        return view('products.create')->with('categories',$categories);
     
     }
 
@@ -41,6 +44,7 @@ class ManageProductsController extends Controller
         $product->title= $request->title;
         $product->price= $request->price;
         $product->quantity= $request->quantity;
+        $product->category_id= $request->category_id;
         $product->description= $request->description;
 
         if ($request->hasFile('photo')) {
@@ -62,8 +66,10 @@ class ManageProductsController extends Controller
     public function edit($id)
     {
     	$product = Product::find($id);
-   		return view('products.edit')->with('product',$product);
-    
+        $categories = Category::all();
+
+        // dd($categories);
+   		return view('products.edit')->with('product',$product)->with('categories',$categories);
     }
 
     public function update(Request $request,$id)
@@ -75,6 +81,7 @@ class ManageProductsController extends Controller
         $product->title= $request->title;
         $product->price= $request->price;
         $product->quantity= $request->quantity;
+        $product->category_id= $request->category_id;
         $product->description= $request->description;
 
         if ($request->hasFile('photo')) {

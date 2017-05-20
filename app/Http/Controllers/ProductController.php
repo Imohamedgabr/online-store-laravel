@@ -11,24 +11,39 @@ use Stripe\Stripe;
 use Stripe\Charge;
 use Illuminate\Support\Facades\Auth;
 use App\Order;
+use App\Category;
 
 class ProductController extends Controller
 {
-    public function getIndex()
+    public function getIndex(Request $request)
     {	
-    	$products = Product::all();
-    	return view('pages.welcome',['products'=>$products]);
+        if ($category_id = $request->get("category_id")) {
+            $products = Product::where('category_id' , $category_id)->paginate(14);
+        }else{
+            $products = Product::paginate(14);
+        }
+    	
+        $categories = Category::all();
+    	return view('pages.welcome',['products'=>$products , 'categories'=>$categories, 'category_id'=>$category_id]);
     }	
 
-    public function showProduct($id)
+    public function showProduct(Request $request,$id)
     {	
-        $product = Product::find($id);
+        if ($category_id = $request->get("category_id")) {
+            $products = Product::where('category_id' , $category_id)->paginate(14);
+        }else{
+            $product = Product::find($id);
+        }
+        
+        $categories = Category::all();
+
+        
         
         DB::table('products')
             ->where('id', $id)
             ->increment('reviews');
 
-        return view('pages.show_product',['product'=>$product]);
+        return view('pages.show_product',['product'=>$product, 'categories'=>$categories, 'category_id'=>$category_id]);
     }	
 
     public function getAddToCart(Request $request, $id)

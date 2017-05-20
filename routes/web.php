@@ -109,7 +109,7 @@ Route::get('/products/create', [
 	'middleware'=>'admin.user'
 	]);
 
-Route::post('/products/store', [
+Route::post('/product/store', [
 	'uses'=>'ManageProductsController@store',
 	'as'=>'product.store',
 	'middleware'=>'admin.user'
@@ -131,5 +131,38 @@ Route::put('/products/update/{id}', [
 Route::delete('/products/delete/{id}', [
 	'uses'=>'ManageProductsController@destroy',
 	'as'=>'product.delete',
+	'middleware'=>'admin.user'
+	]);
+
+//------------------------------------------------------------
+// Categories routes
+
+Route::get('/categories/index', [
+	'uses'=>'CategoriesController@index',
+	'as'=>'categories.index',
+	'middleware'=>'admin.user'
+	]);
+
+Route::post('/categories/store', [
+	'uses'=>'CategoriesController@store',
+	'as'=>'category.store',
+	'middleware'=>'admin.user'
+	]);
+
+// Route::get('/categories/edit/{id}', [
+// 	'uses'=>'CategoriesController@edit',
+// 	'as'=>'categories.edit',
+// 	'middleware'=>'admin.user'
+// 	]);
+
+Route::post('/categories/update/{id}', [
+	'uses'=>'CategoriesController@update',
+	'as'=>'category.update',
+	'middleware'=>'admin.user'
+	]);
+
+Route::delete('/categories/delete/{id}', [
+	'uses'=>'CategoriesController@destroy',
+	'as'=>'category.destroy',
 	'middleware'=>'admin.user'
 	]);

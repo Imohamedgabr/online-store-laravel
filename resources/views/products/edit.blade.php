@@ -34,6 +34,13 @@
 	              'data-parsley-maxlength'        => '250'
 	              ]) !!}
 
+	              {{ Form::label('category_id', 'Category:') }}
+	             <select class="form-control" name="category_id">
+	             	@foreach($categories as $category)
+						<option value="{{$category->id }} ">{{$category->name }} </option>
+	             	@endforeach
+	             </select>
+
 
 				{{ Form::label('price', 'price:', ['class' => 'form-spacing-top']) }}
 				{{-- {{ Form::text('price', null, ['class' => 'form-control','required' => '']) }} --}}
@@ -59,11 +66,12 @@
 				{{Form::label('photo', 'Update Image: (Required)' , ['class' => 'top-margin-space']) }}
 				{{-- {{ Form::file('featured_image') }} --}}
 				{!! Form::file('photo', [
-	              'class'                         => 'form-control',
-	              'required'                      => 'required',
-	              'data-parsley-required-message' => 'Image is required'
+	              'class'                         => 'form-control'
 	              ]) !!}
-
+				
+				{{-- add thosse rules to the image --}}
+				{{-- 'required'                      => 'required',
+	            'data-parsley-required-message' => 'Image is required' --}}
 
 
 				
