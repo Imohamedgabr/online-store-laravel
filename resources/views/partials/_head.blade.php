@@ -23,6 +23,23 @@
 
     <!-- the css files we created in the css folder in public -->
     <link rel="stylesheet" href="{{ URL::asset('css/styles.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('js/jquery-autocomplete/jquery-ui.min.css') }}" />
+    
+    <link rel="stylesheet" href="{{ URL::asset('js/jquery-autocomplete/jquery-ui.theme.css') }}" />
+
+    {!! Html::script('js/jquery-autocomplete/jquery-ui.min.js') !!}
+
+    <script type="text/javascript">
+      $(function(){
+        $("#term").autocomplete({
+          source: "{{ route('product.autocomplete') }}",
+          minLength: 3,
+          select: function(event,ui){
+            $("#term").val(ui.item.value);
+          }
+        });
+      });
+    </script>
 
     @yield('stylesheets')
  

@@ -19,13 +19,38 @@ class ProductController extends Controller
     {	
         if ($category_id = $request->get("category_id")) {
             $products = Product::where('category_id' , $category_id)->paginate(14);
+        }elseif($term = $request->get('term')) {
+            $products =DB::table('products')
+            ->where('title','like','%' . $term . '%')
+            ->orderBy("id","desc")
+            ->paginate(14);
+         // no filters added
         }else{
             $products = Product::paginate(14);
         }
     	
         $categories = Category::all();
+
     	return view('pages.welcome',['products'=>$products , 'categories'=>$categories, 'category_id'=>$category_id]);
     }	
+
+    public function autocomplete(Request $request)
+    {
+        if($term = $request->get('term')) {
+            $products =DB::table('products')
+            ->where('title','like','%' . $term . '%')
+            ->orderBy("id","desc")
+            ->take(5)
+            ->get();
+        }
+        $results = [];
+
+        foreach ($products as $product) {
+            $results[] = ['id' => $product->id , 'value' => $product->title];
+        }
+        return response()->json($results);
+
+    }
 
     public function showProduct(Request $request,$id)
     {	

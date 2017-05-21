@@ -16,6 +16,11 @@ Route::get('/', [
 	'as'=>'product.index'
 ]);
 
+Route::get('/products/autocomplete', [
+	'uses'=>'ProductController@autocomplete',
+	'as'=>'product.autocomplete'
+]);
+
 Route::get('/showProduct/{id}', [
 	'uses'=>'ProductController@showProduct',
 	'as'=>'product.show'

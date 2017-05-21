@@ -37,16 +37,15 @@
                 </div>
             </li>
             <li>
-                <form action="" class="search" role="search">
-                        <div class="input-group">
-                            <input type="text" name="term" id="term" class="form-control" placeholder="Search for item .. ">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="submit">
-                                    <i class="glyphicon glyphicon-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                </form>
+                {!! Form::open(['route'=>'product.index','method'=>'GET','class'=>'navbar-form navbar-right','role'=>'search']) !!}
+            
+                {!! Form::text('term',Request::get('term'),['class'=>'form-control input-group','placeholder'=>'Search ...','id'=>'term']) !!}
+                
+                        <button class="btn btn-default annoying" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+
+                 {!! Form::close() !!}
             </li>
         </ul>
         </div>   
