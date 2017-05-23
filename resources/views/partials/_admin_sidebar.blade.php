@@ -15,7 +15,7 @@
                             <a href="/categories/index"><i class="fa fa-table fa-fw"></i> Manage Categories</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-edit fa-fw"></i> Forms</a>
+                            <a href="{{ route('offers.index') }}"><i class="fa fa-edit fa-fw"></i> Manage Offers</a>
                         </li>
                         {{-- <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>

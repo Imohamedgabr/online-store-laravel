@@ -1,7 +1,7 @@
 @extends('admin_main')
 <!-- main is the name of the page under views -->
 
-@section('title',' | Manage Products ')
+@section('title',' | Manage Offers ')
 
 @section('stylesheets')
     
@@ -28,39 +28,44 @@
         @endif --}}
         
     <div class="actions">
-      <a rel="nofollow" class="btn btn-default" href="{{ route('product.create') }}">
+      <a rel="nofollow" class="btn btn-default" href="{{ route('offer.create') }}">
         <span class="glyphicon glyphicon-plus"></span>
-        Add product
+        Add offer
       </a>
     </div>
     <div class="filters row">
       <br>
-      @if(count($products) > 0 )
+      @if(count($offers) > 0 )
+      
           </div>
               <table class="table">
                 <thead>
                 <tr>
                   <th>Name</th>
                   <th>Description</th>
-                  <th>Price</th>
+                  <th>Discount Percent % </th>
+                  <th>Price Before</th>
                   <th class="col-sm-2">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($products as $product)
+                @foreach($offers as $offer)
                 <tr>
                   <td>
-                    <a rel="nofollow" href="{{ route('product.show', ['id' => $product->id]) }}">{{$product->title}}</a>
+                    <a rel="nofollow" href="{{ route('offer.show', ['id' => $offer->id]) }}">{{$offer->title}}</a>
                   </td>
-                  <td> {{substr(strip_tags($product->description), 0 ,150)}} {{strlen(strip_tags($product->description)) > 150?"..." :"" }} </td>
+                  <td> {{substr(strip_tags($offer->description), 0 ,50)}} {{strlen(strip_tags($offer->description)) > 50?"..." :"" }} </td>
                   <td>
-                    {{$product->price}}
+                    {{$offer->discount_percent}}
+                  </td>
+                  <td>
+                    {{$offer->price}}
                     <span class="glyphicon glyphicon-euro" aria-hidden="true"></span>
                   </td>
                   <td>
-                    <a rel="nofollow" class="btn btn-warning btn-xs" href="{{ route('product.edit',['id' =>$product->id ]) }}">Edit</a>
+                    <a rel="nofollow" class="btn btn-warning btn-xs" href="{{ route('offer.edit',['id' =>$offer->id ]) }}">Edit</a>
                     
-                    {!! Form::open(['route' => ['product.delete', $product->id],'class'=>'delete', 'method' => 'DELETE']) !!}
+                    {!! Form::open(['route' => ['offer.delete', $offer->id],'class'=>'delete', 'method' => 'DELETE']) !!}
 
                     {{-- <a rel="nofollow" class="btn btn-danger btn-xs" >Delete</a> --}}
                     {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']) !!}
@@ -74,15 +79,15 @@
               </table>
               <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                      {{ $products->links() }}
+                      {{ $offers->links() }}
                 </div>
               </div>
             </div>
 
           </div>
-          @else
-            <p><b> no products here yet </b> </p>
-          @endif
+        @else
+            <p><b> no offers here yet </b> </p>
+        @endif
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->

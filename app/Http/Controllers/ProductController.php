@@ -12,6 +12,7 @@ use Stripe\Charge;
 use Illuminate\Support\Facades\Auth;
 use App\Order;
 use App\Category;
+use App\Offer;
 
 class ProductController extends Controller
 {
@@ -28,10 +29,10 @@ class ProductController extends Controller
         }else{
             $products = Product::paginate(14);
         }
-    	
+    	$offers = Offer::all();
         $categories = Category::all();
 
-    	return view('pages.welcome',['products'=>$products , 'categories'=>$categories, 'category_id'=>$category_id]);
+    	return view('pages.welcome',['products'=>$products , 'categories'=>$categories, 'category_id'=>$category_id, 'offers'=>$offers ]);
     }	
 
     public function autocomplete(Request $request)

@@ -171,3 +171,49 @@ Route::delete('/categories/delete/{id}', [
 	'as'=>'category.destroy',
 	'middleware'=>'admin.user'
 	]);
+
+//-----------------------------------------------------
+
+// Offers Routes
+
+Route::get('/offers/index', [
+	'uses'=>'OffersController@index',
+	'as'=>'offers.index',
+	'middleware'=>'admin.user'
+	]);
+
+Route::get('/offers/create', [
+	'uses'=>'OffersController@create',
+	'as'=>'offer.create',
+	'middleware'=>'admin.user'
+	]);
+
+Route::post('/offers/store', [
+	'uses'=>'OffersController@store',
+	'as'=>'offer.store',
+	'middleware'=>'admin.user'
+	]);
+
+
+Route::get('/offers/edit/{id}', [
+	'uses'=>'OffersController@edit',
+	'as'=>'offer.edit',
+	'middleware'=>'admin.user'
+	]);
+
+Route::put('/offers/update/{id}', [
+	'uses'=>'OffersController@update',
+	'as'=>'offer.update',
+	'middleware'=>'admin.user'
+	]);
+
+Route::delete('/offers/delete/{id}', [
+	'uses'=>'OffersController@destroy',
+	'as'=>'offer.delete',
+	'middleware'=>'admin.user'
+	]);
+
+Route::get('/showOffer/{id}', [
+	'uses'=>'OffersController@showOffer',
+	'as'=>'offer.show'
+]);

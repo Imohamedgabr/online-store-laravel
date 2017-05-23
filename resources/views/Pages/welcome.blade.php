@@ -108,6 +108,48 @@
                         {!! $products->links() !!}
                     </div>
                 </div>
+                <div class="row">
+                    <hr>
+                    
+
+                <div class="col col-md-10 col-md-offset-1">
+                <div class="row">
+                    <div class="col col-md-4 col-md-offset-4">
+                        <h1>Our Offers</h1>
+                        <br>
+                    </div>
+                </div>
+                @foreach($offers as $offer)
+                    
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <a href="{{ route('offer.show', ['id' => $offer->id]) }} ">
+                            <img src="{{ asset('uploads/images/'. $offer->imagePath ) }} " alt="">
+                            </a>
+                            <div class="caption">
+                                <h4 class="pull-right">${{$offer->price}}</h4>
+                                <h4><a href="{{ route('offer.show', ['id' => $offer->id]) }} ">{{$offer->title}}</a>
+                                </h4>
+                                <p>{{$offer->description}} </p>
+                                <p> <b> {{$offer->discount_percent}} % Off </b> </p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">{{$offer->reviews}} reviews</p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </p>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    @endforeach
+                
+                </div>
+                
             </div>
 
         </div>

@@ -15,7 +15,7 @@
 
 
                     {{-- serch form --}}
-                    <form action="" class="search" role="search">
+                    {{-- <form action="" class="search" role="search">
                         <div class="input-group">
                             <input type="text" name="term" id="term" class="form-control" placeholder="Search ...">
                             <span class="input-group-btn">
@@ -24,6 +24,6 @@
                                 </button>
                             </span>
                         </div>
-                    </form>
+                    </form> --}}
                 </div>
             </div>
