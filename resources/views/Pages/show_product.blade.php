@@ -53,6 +53,9 @@
                     <div class="ratings">
                         <p class="pull-right">{{$product->reviews}} reviews</p>
                         <br>
+                    @if($average_rating = 0)
+                    <p>No reviews here yet, be first to leave one</p>
+                    @else
                         <p>
 
                             <span class="{{$average_rating < 1?"glyphicon glyphicon-star-empty" :"glyphicon glyphicon-star" }}"></span>
@@ -62,16 +65,21 @@
                             <span class="{{$average_rating < 5?"glyphicon glyphicon-star-empty" :"glyphicon glyphicon-star" }}"></span>
                             {{$average_rating}} stars
                         </p>
+                        @endif
                     </div>
                 </div>
 
                 <div class="well">
 
                     <div class="text-right">
-                        <a class="btn btn-success">Leave a Review</a>
+                    {{-- check if this user left a review or not --}}
+                    @if( $variable == 0 )
+                        <a href="{{ route('review.create',['product_id'=>$product->id]) }}" class="btn btn-success">Leave a Review</a>
+                    @endif
                     </div>
 
                     <hr>
+                    {{-- check if this product has any reviews --}}
                     @if(count($ratings_with_users) > 0 )
                     @foreach($ratings_with_users as $rating)
                     <div class="row">
@@ -85,6 +93,21 @@
                             {{$rating->value}} stars
                             <span class="pull-right">{{ date('M j, Y h:ia', strtotime($rating->updated_at)) }}</span>
                             <p>{{$rating->content }} </p>
+                            {{-- check if this is the user preview so he can edit it --}}
+                            @if($rating->user_id == Auth::id() )
+                            <a href="{{ route('review.edit',['id' =>$rating->id ,'product_id'=>$product->id]) }}"><button class="btn btn-info">Edit your review</button></a>
+                            
+                            {{--  delete form --}}
+                            
+                            {!! Form::open(['method'=>'DELETE' ,'route'=>['review.delete',$rating->id]]) !!} 
+                            <br>
+                            <a href="{{ route('review.edit',['id' =>$rating->id ,'product_id'=>$product->id]) }}"><button class="btn btn-danger" onclick="return confirm('Are you sure?')" >Delete your review</button></a>
+                            
+                           {!! Form::close() !!}
+                          
+                            
+                            @endif
+                            <hr>
                         </div>
                     </div>
                     @endforeach

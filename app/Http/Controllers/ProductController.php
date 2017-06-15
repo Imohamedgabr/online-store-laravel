@@ -18,6 +18,7 @@ use App\User;
 
 class ProductController extends Controller
 {
+
     public function getIndex(Request $request)
     {	
         if ($category_id = $request->get("category_id")) {
@@ -60,14 +61,22 @@ class ProductController extends Controller
     {	
         
         $this->id = $id;
+        $variable = 0;
+        $ratings_with_users = collect();
         $ratings_array = [];
+        
+        // get the average rating
+        $rating_exist = Rating::all();
+        if ($rating_exist->contains('product_id',$id)) {
 
-        $ratings_with_users = DB::table('ratings')
-        ->join('users', function ($join) {
+        $ratings_with_users = DB::table('users')
+        ->join('ratings', function ($join) {
             $join->on('ratings.user_id', '=', 'users.id')
                  ->where('ratings.product_id', '=', $this->id );
         })
         ->get();
+        // if we join ratings with users the rating id gets wrong values so watch out
+        // dd($ratings_with_users);
 
         foreach ($ratings_with_users as $rating) {
             array_push($ratings_array, $rating->value);
@@ -75,8 +84,10 @@ class ProductController extends Controller
 
         $average_rating = array_sum($ratings_array) / count($ratings_array); 
         $average_rating = ceil($average_rating);
-
-        // dd( $average_rating );
+    }else{
+        $average_rating = 0;
+    }
+        // dd( $ratings_with_users );
 
         if ($category_id = $request->get("category_id")) {
             $products = Product::where('category_id' , $category_id)->paginate(14);
@@ -89,8 +100,13 @@ class ProductController extends Controller
         DB::table('products')
             ->where('id', $id)
             ->increment('reviews');
+        if ($ratings_with_users->contains('user_id',Auth::id())) 
+        {
+            $variable = 1;
+        }
+        // dd($variable);
 
-        return view('pages.show_product',['average_rating'=>$average_rating,'ratings_with_users'=> $ratings_with_users ,'product'=>$product, 'categories'=>$categories, 'category_id'=>$category_id]);
+        return view('pages.show_product',['variable'=>$variable ,'average_rating'=>$average_rating,'ratings_with_users'=> $ratings_with_users ,'product'=>$product, 'categories'=>$categories, 'category_id'=>$category_id]);
     }	
 
     public function getAddToCart(Request $request, $id)

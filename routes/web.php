@@ -217,3 +217,33 @@ Route::get('/showOffer/{id}', [
 	'uses'=>'OffersController@showOffer',
 	'as'=>'offer.show'
 ]);
+
+//--------------------------------------------
+// reviews (ratings) routes
+
+Route::get('/ceateReview', [
+	'uses'=>'ReviewsController@create',
+	'as'=>'review.create'
+]);
+
+Route::post('/review/store', [
+	'uses'=>'ReviewsController@store',
+	'as'=>'review.store'
+	]);
+
+
+Route::get('/editReview', [
+	'uses'=>'ReviewsController@edit',
+	'as'=>'review.edit'
+]);
+
+Route::put('/review/update/{id}', [
+	'uses'=>'ReviewsController@update',
+	'as'=>'review.update'
+	]);
+
+
+Route::delete('/review/delete/{id}', [
+	'uses'=>'ReviewsController@destroy',
+	'as'=>'review.delete'
+	]);
