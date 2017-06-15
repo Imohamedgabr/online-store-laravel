@@ -28,7 +28,7 @@ class AddCategoryIdColToOffers extends Migration
     public function down()
     {
         Schema::table('offers', function (Blueprint $table) {
-            //
+            $table->dropColumn('category_id');
         });
     }
 }

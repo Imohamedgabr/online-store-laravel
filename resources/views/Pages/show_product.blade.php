@@ -54,12 +54,13 @@
                         <p class="pull-right">{{$product->reviews}} reviews</p>
                         <br>
                         <p>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            4.0 stars
+
+                            <span class="{{$average_rating < 1?"glyphicon glyphicon-star-empty" :"glyphicon glyphicon-star" }}"></span>
+                            <span class="{{$average_rating < 2?"glyphicon glyphicon-star-empty" :"glyphicon glyphicon-star" }} "></span>
+                            <span class="{{$average_rating < 3?"glyphicon glyphicon-star-empty" :"glyphicon glyphicon-star" }} "></span>
+                            <span class="{{$average_rating < 4?"glyphicon glyphicon-star-empty" :"glyphicon glyphicon-star" }} "></span>
+                            <span class="{{$average_rating < 5?"glyphicon glyphicon-star-empty" :"glyphicon glyphicon-star" }}"></span>
+                            {{$average_rating}} stars
                         </p>
                     </div>
                 </div>
@@ -71,49 +72,31 @@
                     </div>
 
                     <hr>
-
+                    @if(count($ratings_with_users) > 0 )
+                    @foreach($ratings_with_users as $rating)
                     <div class="row">
                         <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">10 days ago</span>
-                            <p>This product was great in terms of quality. I would definitely buy another!</p>
+                        <h4>{{$rating->name }}</h4>
+                            <span class="{{$rating->value < 1?"glyphicon glyphicon-star-empty" :"glyphicon glyphicon-star" }}"></span>
+                            <span class="{{$rating->value < 2?"glyphicon glyphicon-star-empty" :"glyphicon glyphicon-star" }} "></span>
+                            <span class="{{$rating->value < 3?"glyphicon glyphicon-star-empty" :"glyphicon glyphicon-star" }} "></span>
+                            <span class="{{$rating->value < 4?"glyphicon glyphicon-star-empty" :"glyphicon glyphicon-star" }} "></span>
+                            <span class="{{$rating->value < 5?"glyphicon glyphicon-star-empty" :"glyphicon glyphicon-star" }}"></span>
+                            {{$rating->value}} stars
+                            <span class="pull-right">{{ date('M j, Y h:ia', strtotime($rating->updated_at)) }}</span>
+                            <p>{{$rating->content }} </p>
                         </div>
                     </div>
+                    @endforeach
+                    @else
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>No reviews for this product yet, be the first to leave a review!</h4>
+                        </div>
+                    </div>
+                    @endif
 
                     <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">12 days ago</span>
-                            <p>I've alredy ordered another one!</p>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">15 days ago</span>
-                            <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
-                        </div>
-                    </div>
 
                 </div>
 

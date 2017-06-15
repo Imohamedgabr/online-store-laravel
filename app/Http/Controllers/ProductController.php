@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Order;
 use App\Category;
 use App\Offer;
+use App\Rating;
+use App\User;
 
 class ProductController extends Controller
 {
@@ -53,23 +55,42 @@ class ProductController extends Controller
 
     }
 
+
     public function showProduct(Request $request,$id)
     {	
+        
+        $this->id = $id;
+        $ratings_array = [];
+
+        $ratings_with_users = DB::table('ratings')
+        ->join('users', function ($join) {
+            $join->on('ratings.user_id', '=', 'users.id')
+                 ->where('ratings.product_id', '=', $this->id );
+        })
+        ->get();
+
+        foreach ($ratings_with_users as $rating) {
+            array_push($ratings_array, $rating->value);
+        }
+
+        $average_rating = array_sum($ratings_array) / count($ratings_array); 
+        $average_rating = ceil($average_rating);
+
+        // dd( $average_rating );
+
         if ($category_id = $request->get("category_id")) {
             $products = Product::where('category_id' , $category_id)->paginate(14);
         }else{
             $product = Product::find($id);
         }
         
-        $categories = Category::all();
-
-        
+        $categories = Category::all();        
         
         DB::table('products')
             ->where('id', $id)
             ->increment('reviews');
 
-        return view('pages.show_product',['product'=>$product, 'categories'=>$categories, 'category_id'=>$category_id]);
+        return view('pages.show_product',['average_rating'=>$average_rating,'ratings_with_users'=> $ratings_with_users ,'product'=>$product, 'categories'=>$categories, 'category_id'=>$category_id]);
     }	
 
     public function getAddToCart(Request $request, $id)
