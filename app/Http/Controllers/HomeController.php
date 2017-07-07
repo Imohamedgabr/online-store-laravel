@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $orders = Auth::user()->orders;
+        $orders = Auth::user()->orders()->paginate(5);
         // transform allows us to edit each order 
         $orders->transform(function($order, $key){
             $order->cart = unserialize($order->cart);

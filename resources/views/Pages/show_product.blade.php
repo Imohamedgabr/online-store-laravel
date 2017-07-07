@@ -27,12 +27,15 @@
                         <div>
                         @if( $product->quantity > 0)
                         <p id="available">Available</p>
+
+                        <p>{{$product->description}}</p>
+                        <a href="{{ route('product.addToCart',['id'=>$product->id]) }}" class="btn btn-success" role="button"> Add to Cart</a>
+                        
                         @else
                         <p  id="outOfStock">Out Of Stock</p>
                         @endif
                         
-                        <p>{{$product->description}}</p>
-                        <a href="{{ route('product.addToCart',['id'=>$product->id]) }}" class="btn btn-success" role="button"> Add to Cart</a>
+                        
                         
                         @if(Auth::guard("admin_user")->user())
                         <a href="{{ route('product.edit',['id'=>$product->id]) }}" class="btn btn-info" role="button"> Edit Product</a>

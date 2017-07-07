@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\AdminUser;
 
-class AdminHomeController extends Controller
+class NotificationsController extends Controller
 {
-    public function index()
-    {
+    
 
-    	$users = array();
+   	public function show()
+   	{
+      $users = array();
 
    		$notifications = AdminUser::find(1)->unreadNotifications;
 
@@ -25,7 +26,8 @@ class AdminHomeController extends Controller
                     // dd($users);
                    }
                 } 
-                
-    	return view('admin-home')->with('users',$users);
-    }
+
+   		
+   		return view('notification.show')->with('users',$users);
+   	}
 }

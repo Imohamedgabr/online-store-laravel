@@ -8,6 +8,7 @@ use App\Product;
 use App\Category;
 use Storage;
 use Session;
+use App\AdminUser;
 
 class ManageProductsController extends Controller
 {
@@ -24,8 +25,25 @@ class ManageProductsController extends Controller
 
     public function index()
     {
+
+        $users = array();
+
+        $notifications = AdminUser::find(1)->unreadNotifications;
+
+        // dd($notifications);
+
+        for ($x = 0; $x <= 0; $x++) {
+                  foreach($notifications[$x]['data'] as $notification) {
+    
+                    // dd($notification['name']);
+                    array_push($users, $notification['name']);
+
+                    // dd($users);
+                   }
+                } 
+
     	$products = Product::orderBy('id', 'DESC')->paginate(10);
-    	return view('products.index')->with('products',$products);
+    	return view('products.index')->with('products',$products)->with('users',$users);
     }
 
     public function create()

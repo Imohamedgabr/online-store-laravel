@@ -1,21 +1,28 @@
-@extends('main')
+@extends('admin_main')
 <!-- main is the name of the page under views -->
 
-@section('title',' | User Profile')
+@section('title',' | Admin Profile')
+
+@section('stylesheets')
+    
+    {!! Html::style('css/adminHome.css') !!}
+    
+
+@endsection
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+  
             
-            <h1>Welcome Back {{ Auth::user()->name }}</h1>
-            <hr>
-            <h2>My Orders</h2>
-            <div class="panel-body">
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="panel-body">
                 
                 @foreach($orders as $order)
                     <div class="panel panel-default">
                         <ul class="list-group">
+                        <span class="badge">Buyer Name: {{$order->name }} <br><br> Buyer ID: {{$order->id }}</span>
                             @foreach($order->cart->items as $item)
                               <li class="list-group-item">
                               <span class="badge">{{$item['price']}} $ </span>
@@ -33,10 +40,19 @@
                     </div>
                 <hr>
                 @endforeach
-
-                {{ $orders->links() }}
+            {{ $orders->links() }}
             </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
         </div>
-    </div>
-</div>
+     <!-- /.page-wrapper -->
+
+@endsection
+
+@section('scripts')
+
+        {!! Html::script('js/adminHome.js') !!}
+
 @endsection

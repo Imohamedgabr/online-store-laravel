@@ -5,14 +5,31 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use Session;
+use App\AdminUser;
 
 class CategoriesController extends Controller
 {
     public function index()
 
     {
+        $users = array();
+
+        $notifications = AdminUser::find(1)->unreadNotifications;
+
+        // dd($notifications);
+
+        for ($x = 0; $x <= 0; $x++) {
+                  foreach($notifications[$x]['data'] as $notification) {
+    
+                    // dd($notification['name']);
+                    array_push($users, $notification['name']);
+
+                    // dd($users);
+                   }
+                }
+
     	$categories = Category::all();
-    	return view('categories.index')->with('categories', $categories);
+    	return view('categories.index')->with('categories', $categories)->with('users',$users);
     }
 
     public function store(Request $request)

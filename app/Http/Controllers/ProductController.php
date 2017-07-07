@@ -15,6 +15,7 @@ use App\Category;
 use App\Offer;
 use App\Rating;
 use App\User;
+use App\AdminUser;
 
 class ProductController extends Controller
 {
@@ -202,7 +203,13 @@ class ProductController extends Controller
             // how to make a query and save something database 
             // thats how to save related objects in the database
             Auth::user()->orders()->save($order);
+            
+            $order->cart = unserialize($order->cart);
+//---------------------------------------------------------------
 
+            // we pass data to the constructor of the notification class
+            AdminUser::find(1)->notify(new \App\Notifications\NewOrderMade(Auth::user()) );
+    
 
         } catch(\Exception $e){
             return redirect()->route('checkout')->with('error', $e->getMessage());

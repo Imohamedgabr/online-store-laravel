@@ -98,6 +98,18 @@ Route::get('admin_register','AdminAuth\RegisterController@showRegistrationForm')
 
 Route::post('admin_register','AdminAuth\RegisterController@register');
 
+Route::get('/notifications/show', [
+	'uses'=>'NotificationsController@show',
+	'as'=>'notifications.show',
+	'middleware'=>'admin.user'
+	]);
+
+Route::get('/orders/show', [
+	'uses'=>'OrdersController@show',
+	'as'=>'orders.show',
+	'middleware'=>'admin.user'
+	]);
+
 //-----------------------------------------------------------------------------
 
 // Products CRUD
